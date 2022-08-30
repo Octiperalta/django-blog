@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+<div>
+  {% for post in posts%}
+
+
+
+  {%endfor%}
+  <!-- Section 1 -->
+  <div class="bg-light px-1 py-4 p-lg-5">
+    <div class="post-header">
+      <h1>Recent posts</h1>
+    </div>
+    <div class="band">
+      {% for post in posts%}
+
+
+      <div class="item">
+        <a href="http://127.0.0.1:8000/blog/{{ post.id}}" class="post">
+          <div class="thumb" style="background-image: url({{post.image_url_1}});"></div>
+          <article>
+            <h1>{{post.title}}</hh1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores a adipisci hic beatae quidem, illo
+                deleniti voluptate consequuntur accusamus ut!</p>
+              <span>{{post.author}} - {{post.publish_date}}</span>
+          </article>
+        </a>
+      </div>
+
+
+      {%endfor%}
+
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'index.html' %} 
+
+{% block contenido %}
+
+
+<div class="post-hero">
+    <img src='{{post.image_url_2}}' class=""alt="">
+    <div class="post-hero-content">
+        <span>{{post.category}}</span>
+        <p class="display-3">
+            {{post.title}}
+        </p>
+        <span>By {{post.author}} - {{post.publish_date}}</span>
+    </div>
+    
+</div>
+<div class="container post-content mt-5">
+    {{post.content}}
+</div>
+
+{% endblock %}
