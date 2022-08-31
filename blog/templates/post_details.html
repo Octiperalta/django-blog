@@ -1,10 +1,10 @@
-{% extends 'index.html' %} 
+{% extends 'index.html' %}
 
 {% block contenido %}
 
 
 <div class="post-hero">
-    <img src='{{post.image_url_2}}' class=""alt="">
+    <img src='{{post.image_url_2}}' class="" alt="">
     <div class="post-hero-content">
         <span>{{post.category}}</span>
         <p class="display-3">
@@ -12,10 +12,38 @@
         </p>
         <span>By {{post.author}} - {{post.publish_date}}</span>
     </div>
-    
+
 </div>
 <div class="container post-content mt-5">
     {{post.content}}
+</div>
+
+
+
+<div class="comment-section container">
+    <h3 class="h4">Comments</h3>
+
+    {% for comment in comments %}
+    <div class="comment">
+        <span>
+            Comment {{forloop.counter}} by {{comment.name}}
+        </span>
+        <p>
+            {{comment.content | linebreaks }}
+        </p>
+        
+    </div>
+    
+    {% empty %}
+    <p class="muted">There are no comments for this post</p>
+    {% endfor %}
+
+    <h2>Make a new comment</h2>
+    <form method="post">
+        {{comment_form.as_p}}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
 </div>
 
 {% endblock %}

@@ -1,3 +1,4 @@
+import email
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
@@ -16,7 +17,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=250, default='Example Title')
     publish_date = models.DateTimeField(auto_now_add=True)
-    # description = models.TextField(blank=True)
+    description = models.TextField(default='Short Description')
     content = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(
@@ -28,3 +29,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=50)
+    email = models.EmailField(blank=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return f'Comment by {self.name}'
